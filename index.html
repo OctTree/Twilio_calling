@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Twilio WebRTC</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <style>
+            .calling-panel{
+                width: 100%;
+                background-color: black;
+                height: 70px;
+                display: none;
+            }
+            .dial-pad-btn{
+                padding: 20px 0px 0px 20px;
+            }
+
+            .hangup-btn {
+                padding: 15px 0px 0px 20px;
+                margin-right: 50px;
+            }
+            .dial-number{
+                color: white;
+                border: 1px solid white;
+                border-radius: 50%;
+                height: 30px;
+                width: 30px;
+                line-height: 30px;
+                text-align: center;
+                cursor: pointer;
+            }
+            .dial-pad-container{
+                width: 180px;
+                background-color: black;
+                padding: 15px;
+                position: absolute;
+                z-index: 9999;
+                top: 70px;
+                display: none;
+            } 
+            .dial-pad-container .row{
+                margin-bottom: 10px;
+
+
+            }.hangup-btn a{
+                margin-left: 10px;
+            }
+        </style>
+        <script>
+           
+        </script>
+    </head>
+    <body>
+
+        <div class="calling-panel">
+
+            <div class="dial-pad-btn pull-left">
+                <a href="#" onclick="openDialPad(this);"><img src="images/dialpad.svg" height="30"/></a>
+            </div>
+           
+            <div class="hangup-btn pull-right">
+                <a href="#" onclick="mute(this);" class="unmuted">
+                    <img src="images/mute.svg" class="mute" style="display: none;" height="40"/>
+                    <img class="un-mute" src="images/mic-on.svg" height="40"/></a>
+                <a href="#" onclick="hangup();"><img src="images/hangup.svg" height="40"/></a>
+            </div>
+
+        </div>
+
+        <div class="dial-pad-container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a href="#" onclick="closeDialPad();" style="margin-right: 0px;" class="pull-right"><img src="images/close.svg" height="25"/></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><div class="dial-number" onclick="dialNumber(this)">1</div></div>
+                <div class="col-sm-4"><div class="dial-number" onclick="dialNumber(this)">2</div></div>
+                <div class="col-sm-4"><div class="dial-number" onclick="dialNumber(this)">3</div></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><div class="dial-number" onclick="dialNumber(this)">4</div></div>
+                <div class="col-sm-4"><div class="dial-number" onclick="dialNumber(this)">5</div></div>
+                <div class="col-sm-4"><div class="dial-number" onclick="dialNumber(this)">6</div></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><div class="dial-number" onclick="dialNumber(this)">7</div></div>
+                <div class="col-sm-4"><div class="dial-number" onclick="dialNumber(this)">8</div></div>
+                <div class="col-sm-4"><div class="dial-number" onclick="dialNumber(this)">9</div></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><div class="dial-number" onclick="dialNumber(this)">*</div></div>
+                <div class="col-sm-4"><div class="dial-number" onclick="dialNumber(this)">0</div></div>
+                <div class="col-sm-4"><div class="dial-number" onclick="dialNumber(this)">#</div></div>
+            </div>
+        </div>
+
+        <div id="controls">
+           
+            <div>
+                <p class="instructions">Make a Call:</p>
+                <input id="phone-number" type="text" placeholder="Enter a phone # or client name" />
+                <button id="button-call" onclick="makeCall($('#phone-number').val())">Call</button>
+              
+
+            </div>
+            <div id="log"></div>
+        </div>
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://media.twiliocdn.com/sdk/js/client/v1.6/twilio.min.js"></script>
+        <script type="text/javascript" src="quickstart.js"></script>
+    </body>
+</html>
